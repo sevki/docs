@@ -17,12 +17,18 @@ module.exports = {
   module: {
     rules: [
       {
+        exclude: /node_modules/,
+        test: /\.graphql$/,
+        use: [{ loader: "graphql-import-loader" }]
+      },
+      {
         test: /\.m?js$/,
         type: "javascript/auto",
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-react"]
+            presets: ["@babel/preset-react"],
+            plugins: [ "babel-plugin-relay"]
           }
         }
       }

@@ -1,0 +1,9 @@
+{
+  "scripts": [
+    {
+      "matchRef": "refs/heads/master",
+      "file": "/dist/worker.js",
+      "script": "docs"
+    }
+  ]
+}
