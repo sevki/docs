@@ -12,12 +12,12 @@ import ReactDOMServer from "react-dom/server";
 import MarkdownPage from "./Components/MarkdownPage";
 import { createRenderer, StyleProvider } from "@cloudflare/style-provider";
 import { renderToMarkup } from "fela-dom";
-const navigator = {
-  userAgent: "Cloudflare Docs v0.0.0-beta"
-};
-self.navigator = navigator;
-global.navigator = navigator;
-import Octokit from "@octokit/rest";
+// const navigator = {
+//   userAgent: "Cloudflare Docs v0.0.0-beta"
+// };
+// self.navigator = navigator;
+// global.navigator = navigator;
+// import Octokit from "@octokit/rest";
 
 const header = `<!DOCTYPE html>
 <head>
@@ -79,27 +79,27 @@ export default function getPage(u) {
 async function handleRequest(event) {
   const u = new URL(event.request.url);
 
-  let octokit = new Octokit({
-    headers: {
-      accept: "application/vnd.github.v3+json",
-      "user-agent": "Cloudflare Docs v0.0.1"
-    }
-  });
+  // let octokit = new Octokit({
+  //   headers: {
+  //     accept: "application/vnd.github.v3+json",
+  //     "user-agent": "Cloudflare Docs v0.0.1"
+  //   }
+  // });
 
   let cache = await caches.open("docs");
   let response = await cache.match(event.request);
 
   if (!response) {
-    const result = await octokit.repos.getContents({
-      owner: "sevki",
-      repo: "docs",
-      path: "/docs" + u.pathname,
-      ref: "master"
-    });
+    // const result = await octokit.repos.getContents({
+    //   owner: "sevki",
+    //   repo: "docs",
+    //   path: "/docs" + u.pathname,
+    //   ref: "master"
+    // });
 
     let rendered = ReactDOMServer.renderToString(
       <StyleProvider renderer={renderer}>
-        <MarkdownPage input={result.data} />
+        <MarkdownPage input={`# hello! I am here`} />
       </StyleProvider>
     );
 
